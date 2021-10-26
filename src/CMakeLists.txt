@@ -21,13 +21,19 @@ set(CSF_HEADERS
     XYZReader.h
 )
 
-add_library(CSF ${CSF_SOURCES} ${CSF_HEADERS})
-target_compile_options(CSF PRIVATE -Werror -Wall -Wextra)
+#add_library(CSF ${CSF_SOURCES} ${CSF_HEADERS})
+#target_compile_options(CSF PRIVATE -Werror -Wall -Wextra)
+
+## gq
+add_library(CSF STATIC ${CSF_SOURCES} ${CSF_HEADERS})
+target_compile_options(CSF PRIVATE -Wall)
+target_include_directories(CSF PUBLIC .)
 
 if(OpenMP_CXX_FOUND)
     target_link_libraries(CSF PUBLIC OpenMP::OpenMP_CXX)
 endif()
 
-install(TARGETS CSF LIBRARY DESTINATION lib)
-install(TARGETS CSF ARCHIVE DESTINATION lib)
-install(FILES ${CSF_HEADERS} DESTINATION include)
+## gq (commented these)
+#install(TARGETS CSF LIBRARY DESTINATION lib)
+#install(TARGETS CSF ARCHIVE DESTINATION lib)
+#install(FILES ${CSF_HEADERS} DESTINATION include)
